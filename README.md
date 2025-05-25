@@ -8,7 +8,7 @@
 docker compose up -d
 ```
 
-localhost:8080をブラウザに入れてpgAdminにアクセスできるか確認
+localhost:8081をブラウザに入れてpgAdminにアクセスできるか確認
 
 ### GO
 

@@ -8,3 +8,6 @@ lint:
 
 migration:
 	GO_ENV=dev go run migrate/migrate.go
+
+run:
+	GO_ENV=dev go run main.go
