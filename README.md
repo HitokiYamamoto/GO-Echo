@@ -33,3 +33,15 @@ Lint
 ```shell
 make lint
 ```
+
+package追加
+
+```shell
+go mod tidy
+```
+
+migration
+
+```shell
+make migration
+```
