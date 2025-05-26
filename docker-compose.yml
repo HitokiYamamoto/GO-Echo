@@ -10,7 +10,7 @@ services:
       - "5433:5432"
     volumes:
       - volume_postgres:/var/lib/postgresql/data
-      - ./docker/postgres_service/initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/volume/postgres_service/initdb.d:/docker-entrypoint-initdb.d
 
   service_pgadmin:
     image: dpage/pgadmin4:6.11
@@ -27,15 +27,29 @@ services:
 
   service_golang:
     build:
-      context: ./docker/
+      context: ./docker/backend
       dockerfile: Dockerfile
     container_name: container_golang
     volumes:
-      - .:/app
-    working_dir: /app
+      - ./backend:/backend
+    working_dir: /backend
     command: ["sleep", "infinity"]
     ports:
       - "8080:8080"
+
+  service_react:
+    build:
+      context: ./docker/frontend
+      dockerfile: Dockerfile
+    container_name: container_react
+    volumes:
+      - ./frontend:/frontend
+    working_dir: /frontend
+    command: ["sleep", "infinity"]
+    ports:
+      - "5173:5173"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
 
 volumes:
   volume_postgres:
